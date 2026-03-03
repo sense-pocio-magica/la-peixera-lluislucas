@@ -1,4 +1,6 @@
-public class Peix
+public class Peix : Amimal
 {
+    //reprodueix
+    //mor
     
 }
