@@ -1,16 +1,25 @@
 public class Peixera
 {
+
+/*
+        -mida
+        -llista Aquari
+        -posicions
+        -potser mètodes tipus afegir/eliminar animal
+        -comprovar límits*/
+
     public (int X, int Y) MidaPeixera {get; private set;}
 
-    public List<Animal> Aquari = new();
+    public List<Animal> Aquari {get; private set;}
 
     public  Peixera()
     {
        MidaPeixera = (20,20);
+       Aquari = new List<Animal>();
         
     }
 
-    public virtual (int x, int y) escollirPosicioInicialAnimal (Random r1 )
+    public  virtual (int x, int y) EscollirPosicioInicialAnimal (Random r1 )
     {
         int x = r1.Next(0,MidaPeixera.X);
 
@@ -39,4 +48,12 @@ public class Peixera
 
         return true;
     }
+
+
+    public void EliminarAnimal(Animal animal)
+    {
+            animal.Morir();
+            Aquari.Remove(animal);
+    }
+
 }

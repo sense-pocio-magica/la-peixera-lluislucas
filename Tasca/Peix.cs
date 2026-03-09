@@ -4,13 +4,14 @@ public class Peix : Animal
   
     public   ESexe Sexe {get; set;}
 
+
     public Peix((int x, int y) posicioInicial) : base(posicioInicial)
     {
       
-      escullSexe();
+      EscullSexe();
     }
 
-    public virtual void escullSexe()
+    public  void EscullSexe()
     {
         int numero = rPeix.Next(0,2);
         if(numero == 0)
@@ -23,20 +24,52 @@ public class Peix : Animal
             this.Sexe = ESexe.Femella;
 
     }
-    
-    
-    /*public Animal  Reproduccio()
+
+    /*public  override bool EsPotReproduir(Animal altre)
     {
-       
-       new Peix((int x, int y) posicio, Sexe sexe) : base(posicio)
-        {
-             posicio = escollirPosicioInicialAnimal(r2);
-        }
         
+            return false;
     }*/
-    
-    
+
+   public override void Interactuar(Animal altre,Peixera peixera)
+    {
+        if(altre is Tauro)
+        {
+            Morir();
+        }
+
+        if(altre is Peix p)
+        {
+            if(Sexe == p.Sexe)
+            {
+                Morir();
+                p.Morir();
+            }
+            else
+            {
+                Reproduccio(p, peixera);
+                
+            }
+        }
+    }
+
+  
+       
+    public Animal Reproduccio(Peix altrePeix, Peixera peixera)
+    {
+            (int x, int y) posicioFill = peixera.EscollirPosicioInicialAnimal(rPeix);
+
+            while (posicioFill == this.Posicio || posicioFill == altrePeix.Posicio)
+            {
+                posicioFill = peixera.EscollirPosicioInicialAnimal(rPeix);
+            }
+
+            return new Peix(posicioFill);
+    }
+
+        
 }
+    
 
 /* 
 
@@ -44,6 +77,7 @@ if ( altre is Tauro)
 {
         this.Matar()
 }
+>>>>>>> dbabe4d474eafa1aebe5001e2603dc10f69b7ef1
 if ( altre is Peix p)
 {
     if(p.sexe == sexe)
