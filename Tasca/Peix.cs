@@ -2,7 +2,7 @@ public class Peix : Animal
 {
     private static Random rPeix = new();
   
-    public   ESexe Sexe {get; set;}
+    
 
 
     public Peix((int x, int y) posicioInicial) : base(posicioInicial)
@@ -11,19 +11,7 @@ public class Peix : Animal
       EscullSexe();
     }
 
-    public  void EscullSexe()
-    {
-        int numero = rPeix.Next(0,2);
-        if(numero == 0)
-        {
-            this.Sexe = ESexe.Mascle;
-            return;
-            
-        }
-        
-            this.Sexe = ESexe.Femella;
 
-    }
 
     /*public  override bool EsPotReproduir(Animal altre)
     {
@@ -31,11 +19,12 @@ public class Peix : Animal
             return false;
     }*/
 
-   public override void Interactuar(Animal altre,Peixera peixera)
+   public override Animal? Interactuar(Animal altre,Peixera peixera)
     {
         if(altre is Tauro)
         {
             Morir();
+            return null;
         }
 
         if(altre is Peix p)
@@ -44,18 +33,20 @@ public class Peix : Animal
             {
                 Morir();
                 p.Morir();
+                
             }
             else
             {
-                Reproduccio(p, peixera);
+                return Reproduccio(p, peixera);
                 
             }
         }
+        return null;
     }
 
   
        
-    public Animal Reproduccio(Peix altrePeix, Peixera peixera)
+    public override Animal Reproduccio(Animal altrePeix, Peixera peixera)
     {
             (int x, int y) posicioFill = peixera.EscollirPosicioInicialAnimal(rPeix);
 

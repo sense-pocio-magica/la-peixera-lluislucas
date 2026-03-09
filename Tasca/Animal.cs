@@ -8,20 +8,38 @@ public abstract class Animal
 
     public bool EsViu {get; protected set;}
 
+    public   ESexe Sexe {get; set;}
+
     public Animal((int x, int y) posicioInicial)
     {
       
       Posicio = posicioInicial;
       Direccio = direccioAnimal();
       EsViu = true;
+      Sexe = EscullSexe();
 
     }
-    
+    public  ESexe EscullSexe()
+    {
+        int numero = r.Next(0,2);
+        if(numero == 0)
+        {
+            this.Sexe = ESexe.Mascle;
+            return ESexe.Mascle;
+            
+        }
+        
+            this.Sexe = ESexe.Femella;
+            return ESexe.Femella;
+
+    }
+
+    public abstract Animal Reproduccio(Animal altrePeix, Peixera peixera);
+  
 
     public virtual  (int dx, int dy) direccioAnimal ()
-
     {
-         int dx = r.Next(-1, 2);
+        int dx = r.Next(-1, 2);
         int dy = r.Next(-1, 2);
 
         while (dx == 0 && dy == 0)
@@ -38,7 +56,7 @@ public abstract class Animal
     public virtual void MoureAnimal()
     {
         
-        Posicio = (Posicio.x +Direccio.dx, Posicio.y +Direccio.dy);
+        Posicio = (Posicio.x + Direccio.dx, Posicio.y + Direccio.dy);
         
     }
 
@@ -48,12 +66,7 @@ public abstract class Animal
         EsViu = false;
     }
 
-   /* public virtual bool EsPotReproduir(Animal altre)
-    {
-            return false;
-    }*/
-
-    public abstract void Interactuar(Animal altre, Peixera peixera);
+    public abstract Animal? Interactuar(Animal altre, Peixera peixera);
 
 
     

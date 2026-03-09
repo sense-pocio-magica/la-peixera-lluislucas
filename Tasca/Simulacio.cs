@@ -5,17 +5,57 @@ public class Simulacio
 
      public int Ronda { get; set; }
 
-     public Simulacio()
+     public Simulacio(Peixera peixera)
     {
+        Peixera = peixera;
         Ronda = 99;
     }
+    
+    public void MoureAnimals(Peixera peixera)
+    {
+        foreach(Animal a in peixera.Aquari)
+        {
+            a.MoureAnimal();
+            
+        }
+    }
+    public void BuscarCoincidencies(Peixera peixera)
+    {
+         foreach(Animal a in peixera.Aquari)
+        {
+            a.MoureAnimal();
+            
+        }
+        
+    }
+    
+    /*public  void Interactuar(Animal altre,Peixera peixera)
+    {
+        if(altre is Tauro)
+        {
+            Morir();
+        }
+
+        if(altre is Peix p)
+        {
+            if(Sexe == p.Sexe)
+            {
+                Morir();
+                p.Morir();
+            }
+            else
+            {
+                Reproduccio(p, peixera);
+                
+            }
+        }
+    }*/
 
      public void FerRonda()
     {
-    FerRonda();
-    MoureAnimals()
-    BuscarCoincidencies()
-    GestionarTrobada(animal1, animal2)
+        
+    }
+
         
     }
 

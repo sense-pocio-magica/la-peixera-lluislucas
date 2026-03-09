@@ -1,14 +1,14 @@
-public class Pop: Animal
+public class Pop
 {
     //no sexe
 
     //no reproduccio
 
-    public override (int x, int y)  PosicioInicial()
+    public  (int x, int y)  PosicioInicial()
     {
         
     }
-    public override (int x, int y)  AlLimitCanviDireccio()
+    public  (int x, int y)  AlLimitCanviDireccio()
     {
         
     }
