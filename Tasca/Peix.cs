@@ -2,26 +2,83 @@ public class Peix : Animal
 {
     private static Random rPeix = new();
   
-    public Sexe Sex {get; set;}
+    public   ESexe Sexe {get; set;}
 
-    public Peix((int x, int y) posicio, Sexe sexe) : base(posicio)
+    public Peix((int x, int y) posicioInicial) : base(posicioInicial)
     {
-      Sex = sexe;
+      
+      EscullSexe();
     }
-    
-    
-    public Animal  Reproduccio()
+
+    public  void EscullSexe()
     {
-       
-       new Peix((int x, int y) posicio, Sexe sexe) : base(posicio)
+        int numero = rPeix.Next(0,2);
+        if(numero == 0)
         {
-             posicio = escollirPosicioInicialAnimal(r2);
+            this.Sexe = ESexe.Mascle;
+            return;
+            
         }
         
+            this.Sexe = ESexe.Femella;
+
     }
-    
-    
+
+    /*public  override bool EsPotReproduir(Animal altre)
+    {
+        
+            return false;
+    }*/
+
+   public override void Interactuar(Animal altre)
+    {
+        if(altre is Tauro)
+        {
+            Morir();
+        }
+
+        if(altre is Peix p)
+        {
+            if(Sexe == p.Sexe)
+            {
+                Morir();
+                p.Morir();
+            }
+            else
+            {
+                Reproduccio();
+                
+            }
+        }
+    }
+
+  
+       
+    public Animal Reproduccio(Peix altrePeix, Peixera peixera)
+    {
+            (int x, int y) posicioFill = peixera.EscollirPosicioInicialAnimal(rPeix);
+
+            while (posicioFill == this.Posicio || posicioFill == altrePeix.Posicio)
+            {
+                posicioFill = peixera.EscollirPosicioInicialAnimal(rPeix);
+            }
+
+            return new Peix(posicioFill);
+    }
+
+        
 }
+
+
+
+    
+    
+
+    
+
+    
+    
+
 
 /* 
 

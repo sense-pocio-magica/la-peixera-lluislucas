@@ -1,4 +1,4 @@
-public enum Sexe
+public enum ESexe
 {
     Mascle,
     Femella

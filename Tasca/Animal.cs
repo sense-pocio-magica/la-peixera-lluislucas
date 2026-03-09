@@ -1,11 +1,11 @@
 public abstract class Animal
 {
     protected static Random r = new();
-    protected (int x, int y) Posicio {get; private set;}
+    public (int x, int y) Posicio {get; protected set;}
 
-    protected (int dx, int dy) Direccio {get; private set;}
+    public (int dx, int dy) Direccio {get; protected set;}
 
-    public bool EsViu {get; private set;}
+    public bool EsViu {get; protected set;}
 
     public Animal((int x, int y) posicioInicial)
     {
@@ -16,7 +16,7 @@ public abstract class Animal
 
     }
     
-    protected (int dx, int dy) direccioAnimal ()
+    public virtual  (int dx, int dy) direccioAnimal ()
     {
          int dx = r.Next(-1, 2);
         int dy = r.Next(-1, 2);
@@ -31,22 +31,25 @@ public abstract class Animal
         
     }
 
-    public virtual void direccioDiferent()
-    {
-        
-    }
 
     public virtual void MoureAnimal()
     {
         
-        Posicio.x = Posicio.x +Direccio.dx;
-        Posicio.y = Posicio.y +Direccio.dy;
-
+        Posicio = (Posicio.x +Direccio.dx, Posicio.y +Direccio.dy);
         
     }
 
+    public void Morir()
+    {
+        EsViu = false;
+    }
 
+   /* public virtual bool EsPotReproduir(Animal altre)
+    {
+            return false;
+    }*/
 
+    public abstract void Interactuar(Animal altre);
 
     
 }
