@@ -8,51 +8,49 @@ public class Pop
 
     public bool EsViu {get; private set;}
 
-    public Pop((int x, int y) posicioInicial) 
+    public Pop() 
     {
+      Posicio = PosicioInicialPop(rPeix);
       EsViu = true;
-      Direccio = direccioPop();
+      Direccio = CanviarDireccioPop();
+      
       
     }
 
-    public void override (int x, int y)  PosicioInicial(Random random)//arregla 
+    public  (int x, int y)    PosicioInicialPop(Random random)//arregla 
     {
         int[] lateral ={0,19};
+
+        (int x,int y)[] Posicions = {(random.Next(20),lateral[random.Next(1)]),(lateral[random.Next(1)],random.Next(20))}; 
         
-        //Posicio1: 
-        Posicio.X = Posicio.X(random.Next(20)); /*= 0 - 19/*/ 
-        Posicio.Y = Posicio.Y(lateral[random.Next(1)]); //= 0 o 19
-        //Posicio2: 
-        Posicio.X = Posicio.X(lateral[random.Next(1)]); /*= 0 o 19 */ 
-        Posicio.Y = Posicio.Y(random.Next(20)); //= 0 - 19
-        
+        return Posicions[random.Next(2)];
+
     }
 
-    public  (int x, int y)  DireccioPop()
+    public   (int dx, int dy)  CanviarDireccioPop()
     {
 
-        (((((())))))
-        Posicio( 0,0 )  => Direccio(0,1)
-        Posicio(19 , 0)    => Direccio(1,0)
-        Posicio(19 ,19 )    => Direccio(0,-1)
-        Posicio( 0,19 )    => Direccio(-1,0)
-        
-        
-        
-    }
-
-    public  (int dx, int dy) direccioPop ()
-    {
-        int dx = rPeix.Next(-1, 2);
-        int dy = rPeix.Next(-1, 2);
-
-        while (dx == 0 && dy == 0)
+        if (Posicio == (0,0))
         {
-            dx = rPeix.Next(-1, 2);
-            dy = rPeix.Next(-1, 2);
+            return (0,1);
         }
+        else if (Posicio == (19,0))
+        {
+            return (1,0);
+        }
+        else if (Posicio == (19,19))
+        {
+            return (0,-1);
+        }
+       else
+            return (-1,0);    
+    }
 
-        return (dx, dy);
+
+    public virtual void MourePop()
+    {
+        
+        Posicio = (Posicio.x + Direccio.dx, Posicio.y + Direccio.dy);
         
     }
 
