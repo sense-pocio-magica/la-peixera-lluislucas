@@ -1,4 +1,4 @@
-public class Pop
+public  class Pop : Animal
 {
     public static Random rPeix = new();
 
@@ -8,23 +8,14 @@ public class Pop
 
     public bool EsViu {get; private set;}
 
-    public Pop() 
+    public Pop((int x, int y) posicioInicial) : base(posicioInicial)
     {
-      Posicio = PosicioInicialPop(rPeix);
+      Posicio = posicioInicial;
       EsViu = true;
       Direccio = CanviarDireccioPop();
+
       
       
-    }
-
-    public  (int x, int y)    PosicioInicialPop(Random random)//arregla 
-    {
-        int[] lateral ={0,19};
-
-        (int x,int y)[] Posicions = {(random.Next(20),lateral[random.Next(1)]),(lateral[random.Next(1)],random.Next(20))}; 
-        
-        return Posicions[random.Next(2)];
-
     }
 
     public   (int dx, int dy)  CanviarDireccioPop()

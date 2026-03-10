@@ -13,12 +13,13 @@ public abstract class Animal
     public Animal((int x, int y) posicioInicial)
     {
       
-      Posicio = posicioInicial;
+      Posicio = posicioInicial;//quan se crida constructor posar metode EscollirPosicioInicialAnimal() dins parentesis
       Direccio = direccioAnimal();
       EsViu = true;
       Sexe = EscullSexe();
 
     }
+
     public  ESexe EscullSexe()
     {
         int numero = r.Next(0,2);
