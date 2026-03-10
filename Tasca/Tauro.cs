@@ -11,29 +11,18 @@ public class Tauro: Animal
       EscullSexe();
     }
 
-    public  void EscullSexe()
-    {
-        int numero = rPeix.Next(0,2);
-        if(numero == 0)
-        {
-            this.Sexe = ESexe.Mascle;
-            return;
-            
-        }
-        
-            this.Sexe = ESexe.Femella;
-
-    }
-
-    public override void Interactuar(Animal altre, Peixera peixera)
+    public override Animal? Interactuar(Animal altre, Peixera peixera)
     {
         
         if(altre is Peix p)
         {
             p.Morir();
         }
-
-        if(altre is Tauro t)
+        else if(altre is Tortuga )
+        {
+            CanvidireccioTauro();
+        }
+        else if(altre is Tauro t)
         {
             if(Sexe == t.Sexe)
             {
@@ -42,18 +31,19 @@ public class Tauro: Animal
             }
             else
             {
-                Reproduccio(t,peixera);
+                 return Reproduccio(t,peixera);
                 
             }
         
         }
+        return null;
     }
 
-    public Animal Reproduccio(Tauro altreTauro, Peixera peixera)
+    public override Animal Reproduccio(Animal altre, Peixera peixera)
     {
             (int x, int y) posicioFill = peixera.EscollirPosicioInicialAnimal(rPeix);
 
-            while (posicioFill == this.Posicio || posicioFill == altreTauro.Posicio)
+            while (posicioFill == this.Posicio || posicioFill == altre.Posicio)
             {
                 posicioFill = peixera.EscollirPosicioInicialAnimal(rPeix);
             }
@@ -62,10 +52,25 @@ public class Tauro: Animal
     }
     
 
-    // public bool Morir(Animal animal)
+    // public bool 50ROndesMor(Animal)
     
+    //
+    public void  CanvidireccioTauro()
+    {
+
+        int dx = r.Next(-1, 2);
+        int dy = r.Next(-1, 2);
+        
+
+        while (dx == Direccio.dx && dy == Direccio.dy || dx == 0 && dy == 0)
+        {
+            dx = r.Next(-1, 2);
+            dy = r.Next(-1, 2);
+        }
+
+        Direccio = (dx, dy);
+        
+    }
 
     
-
-    //conta rondes
 }

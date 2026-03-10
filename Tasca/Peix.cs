@@ -46,11 +46,11 @@ public class Peix : Animal
 
   
        
-    public override Animal Reproduccio(Animal altrePeix, Peixera peixera)
+    public override Animal Reproduccio(Animal altre, Peixera peixera)
     {
             (int x, int y) posicioFill = peixera.EscollirPosicioInicialAnimal(rPeix);
 
-            while (posicioFill == this.Posicio || posicioFill == altrePeix.Posicio)
+            while (posicioFill == this.Posicio || posicioFill == altre.Posicio)
             {
                 posicioFill = peixera.EscollirPosicioInicialAnimal(rPeix);
             }

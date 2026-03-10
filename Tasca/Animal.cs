@@ -34,7 +34,7 @@ public abstract class Animal
 
     }
 
-    public abstract Animal Reproduccio(Animal altrePeix, Peixera peixera);
+    public abstract Animal Reproduccio(Animal altre, Peixera peixera);
   
 
     public virtual  (int dx, int dy) direccioAnimal ()
