@@ -30,6 +30,8 @@ public class Pop
 
     public  (int x, int y)  DireccioPop()
     {
+
+        (((((())))))
         Posicio( 0,0 )  => Direccio(0,1)
         Posicio(19 , 0)    => Direccio(1,0)
         Posicio(19 ,19 )    => Direccio(0,-1)
