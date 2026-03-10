@@ -1,8 +1,6 @@
-public class Tortuga : Animal
+public class Tortuga: Animal
 {
-    public ESexe Sexe {get; private set;}
-
-    
+    private static Random rPeix = new();
     public Tortuga((int x, int y) posicioInicial) : base(posicioInicial)
     {
       
@@ -12,26 +10,33 @@ public class Tortuga : Animal
     
     public override Animal? Interactuar(Animal altre, Peixera peixera)
     {
-        
-        if(altre is Peix p)
-        {
-            p.Morir();
-        }
 
-        if(altre is Tauro t)
+        if(altre is Tortuga tortu)
         {
-            if(Sexe == t.Sexe)
+            if(Sexe == tortu.Sexe)
             {
                 Morir();
-                t.Morir();
+                tortu.Morir();
             }
             else
             {
-                return Reproduccio(t,peixera);
+                return Reproduccio(tortu,peixera);
                 
             }
         
         }
         return null;
+    }
+
+    public override Animal Reproduccio(Animal altre, Peixera peixera)
+    {
+            (int x, int y) posicioFill = peixera.EscollirPosicioInicialAnimal(rPeix);
+
+            while (posicioFill == this.Posicio || posicioFill == altre.Posicio)
+            {
+                posicioFill = peixera.EscollirPosicioInicialAnimal(rPeix);
+            }
+
+            return new Tortuga(posicioFill);
     }
 }

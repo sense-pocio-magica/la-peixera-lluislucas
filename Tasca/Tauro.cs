@@ -1,22 +1,27 @@
 public class Tauro: Animal
 {
     private static Random rPeix = new();
-    public int RondaNaixament {get; set;}
-
-    public ESexe Sexe {get; private set;}
+    public int Vides {get; set;}
 
     public Tauro((int x, int y) posicioInicial) : base(posicioInicial)
     {
       
       EscullSexe();
+      Vides = 50;
     }
 
     public override Animal? Interactuar(Animal altre, Peixera peixera)
     {
         
-        if(altre is Peix p)
+        if(altre is Peix p )
         {
             p.Morir();
+            
+        }
+        else if(altre is Pop po )
+        {
+            po.Morir();
+            
         }
         else if(altre is Tortuga )
         {
@@ -52,9 +57,16 @@ public class Tauro: Animal
     }
     
 
-    // public bool 50ROndesMor(Animal)
+    public void CompteEnrereMorTauro()
+    {
+        Vides -= 1;
+
+        if(Vides == 0)
+        {
+            Morir();
+        }
+    }
     
-    //
     public void  CanvidireccioTauro()
     {
 
